@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LOVELY STORE — Kallara, Karette, Thiruvananthapuram</title>
+  <meta name="description" content="Lovely Store, Kallara — building materials, hardware, plumbing, electrical and construction supplies."/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- Particle layer -->
+<canvas id="particle-canvas"></canvas>
+
+<!-- Custom cursor -->
+<div id="cursor">
+  <div id="cursor-ring"></div>
+  <div id="cursor-dot-inner"></div>
+</div>
+<div id="coord-display">0000 : 0000</div>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <a class="nav-logo" href="#">LOVELY <em>STORE</em></a>
+  <span class="nav-meta">EST. 1990 · KALLARA, KARETTE · TVM</span>
+  <ul class="nav-links">
+    <li><a href="#explore">EXPLORE</a></li>
+    <li><a href="#catalogue">CATALOGUE</a></li>
+    <li><a href="#about">ABOUT</a></li>
+    <li><a href="/admin" class="admin">ADMIN ↗</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-bg-number" aria-hidden="true">30</div>
+
+    <p class="hero-eyebrow">Building Materials · Hardware · Construction</p>
+
+    <h1 class="hero-title">
+      <span class="hero-title-line">BUILD</span>
+      <span class="hero-title-line"><span class="stroke-text">WHAT</span></span>
+      <span class="hero-title-line">LASTS</span>
+    </h1>
+
+    <p class="hero-sub">
+      Kallara, Karette's complete construction supply destination —<br>
+      serving contractors, architects &amp; homebuilders since 1990.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#explore" class="btn-primary">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        Explore Store
+      </a>
+      <a href="#catalogue" class="btn-ghost">View All Products</a>
+    </div>
+  </div>
+
+  <!-- Construction tape ticker -->
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <div class="ticker-item">Cement &amp; Aggregates</div>
+      <div class="ticker-item">Steel &amp; Iron Rods</div>
+      <div class="ticker-item">PVC &amp; CPVC Pipes</div>
+      <div class="ticker-item">Electrical Wiring</div>
+      <div class="ticker-item">Floor &amp; Wall Tiles</div>
+      <div class="ticker-item">GI Roofing Sheets</div>
+      <div class="ticker-item">Power Tools</div>
+      <div class="ticker-item">Sanitaryware</div>
+      <div class="ticker-item">Safety Equipment</div>
+      <div class="ticker-item">Paints &amp; Finishes</div>
+      <div class="ticker-item">Fasteners &amp; Bolts</div>
+      <div class="ticker-item">Door Hardware</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PHASES ══ -->
+<div class="phases-strip reveal">
+  <div class="phase-step active">
+    <div class="phase-step-num">// 01</div>
+    <div class="phase-step-name">Foundation</div>
+    <div class="phase-step-items">Cement · Sand · Bricks · Steel</div>
+  </div>
+  <div class="phase-step">
+    <div class="phase-step-num">// 02</div>
+    <div class="phase-step-name">Structure</div>
+    <div class="phase-step-items">Rods · Blocks · Timber · Frame</div>
+  </div>
+  <div class="phase-step">
+    <div class="phase-step-num">// 03</div>
+    <div class="phase-step-name">Plumbing</div>
+    <div class="phase-step-items">PVC · CPVC · Valves · Tanks</div>
+  </div>
+  <div class="phase-step">
+    <div class="phase-step-num">// 04</div>
+    <div class="phase-step-name">Electrical</div>
+    <div class="phase-step-items">Wire · MCB · LED · Conduit</div>
+  </div>
+  <div class="phase-step">
+    <div class="phase-step-num">// 05</div>
+    <div class="phase-step-name">Finishing</div>
+    <div class="phase-step-items">Tiles · Paint · Doors · Fixtures</div>
+  </div>
+</div>
+
+<!-- ══ INTERACTIVE HOUSE ══ -->
+<section id="explore">
+  <div id="house-section">
+    <div class="section-eyebrow reveal">Interactive blueprint</div>
+    <h2 class="section-title-xl reveal">
+      EXPLORE<br>
+      <span class="dim">THE HOUSE</span>
+    </h2>
+    <p class="house-hint reveal">Click any zone to discover products used there</p>
+
+    <div class="house-wrapper reveal">
+      <svg id="house-svg" viewBox="0 0 960 640" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="fg" width="24" height="24" patternUnits="userSpaceOnUse">
+            <path d="M 24 0 L 0 0 0 24" fill="none" stroke="rgba(240,237,230,0.04)" stroke-width="0.5"/>
+          </pattern>
+          <filter id="orange-glow">
+            <feGaussianBlur stdDeviation="6" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="soft-glow">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <radialGradient id="rg-roof" cx="50%" cy="60%">
+            <stop offset="0%" stop-color="rgba(255,107,26,0.22)"/>
+            <stop offset="100%" stop-color="rgba(255,107,26,0)"/>
+          </radialGradient>
+          <radialGradient id="rg-walls" cx="50%" cy="50%">
+            <stop offset="0%" stop-color="rgba(200,150,10,0.15)"/>
+            <stop offset="100%" stop-color="rgba(200,150,10,0)"/>
+          </radialGradient>
+          <radialGradient id="rg-bath" cx="50%" cy="50%">
+            <stop offset="0%" stop-color="rgba(20,180,255,0.2)"/>
+            <stop offset="100%" stop-color="rgba(20,180,255,0)"/>
+          </radialGradient>
+          <radialGradient id="rg-elec" cx="50%" cy="50%">
+            <stop offset="0%" stop-color="rgba(255,220,0,0.2)"/>
+            <stop offset="100%" stop-color="rgba(255,220,0,0)"/>
+          </radialGradient>
+          <radialGradient id="rg-found" cx="50%" cy="40%">
+            <stop offset="0%" stop-color="rgba(180,120,40,0.25)"/>
+            <stop offset="100%" stop-color="rgba(180,120,40,0)"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Base grid -->
+        <rect width="960" height="640" fill="url(#fg)"/>
+
+        <!-- ─── DIMENSION LINES ─── -->
+        <!-- Horizontal -->
+        <line x1="160" y1="28" x2="800" y2="28" stroke="rgba(255,107,26,0.25)" stroke-width="0.5" stroke-dasharray="5 3"/>
+        <line x1="160" y1="23" x2="160" y2="33" stroke="rgba(255,107,26,0.35)" stroke-width="0.8"/>
+        <line x1="800" y1="23" x2="800" y2="33" stroke="rgba(255,107,26,0.35)" stroke-width="0.8"/>
+        <text x="480" y="23" text-anchor="middle" fill="rgba(255,107,26,0.5)" font-family="Share Tech Mono,monospace" font-size="9" letter-spacing="0.18em">13.2 m FRONTAGE</text>
+        <!-- Vertical -->
+        <line x1="128" y1="130" x2="128" y2="575" stroke="rgba(255,107,26,0.25)" stroke-width="0.5" stroke-dasharray="5 3"/>
+        <line x1="123" y1="130" x2="133" y2="130" stroke="rgba(255,107,26,0.35)" stroke-width="0.8"/>
+        <line x1="123" y1="575" x2="133" y2="575" stroke="rgba(255,107,26,0.35)" stroke-width="0.8"/>
+        <text x="116" y="353" text-anchor="middle" fill="rgba(255,107,26,0.5)" font-family="Share Tech Mono,monospace" font-size="9" letter-spacing="0.15em" transform="rotate(-90,116,353)">9.1 m HEIGHT</text>
+
+        <!-- ─── FOUNDATION ZONE ─── -->
+        <g class="zone" onclick="openZone('foundation')">
+          <rect class="zone-fill" x="158" y="548" width="644" height="58" fill="url(#rg-found)" rx="2"/>
+          <!-- Foundation block with hatching -->
+          <rect x="160" y="555" width="640" height="42" fill="rgba(100,70,20,0.12)" stroke="rgba(255,107,26,0.3)" stroke-width="1"/>
+          <!-- Aggregate hatching lines -->
+          <line x1="160" y1="555" x2="800" y2="555" stroke="rgba(255,107,26,0.18)" stroke-width="0.5"/>
+          <line x1="160" y1="566" x2="800" y2="566" stroke="rgba(240,237,230,0.08)" stroke-width="0.5" stroke-dasharray="8 5"/>
+          <line x1="160" y1="577" x2="800" y2="577" stroke="rgba(240,237,230,0.08)" stroke-width="0.5" stroke-dasharray="8 5"/>
+          <!-- Diagonal hatch pattern -->
+          <line x1="200" y1="555" x2="170" y2="597" stroke="rgba(255,107,26,0.08)" stroke-width="1"/>
+          <line x1="240" y1="555" x2="210" y2="597" stroke="rgba(255,107,26,0.08)" stroke-width="1"/>
+          <line x1="280" y1="555" x2="250" y2="597" stroke="rgba(255,107,26,0.08)" stroke-width="1"/>
+          <line x1="320" y1="555" x2="290" y2="597" stroke="rgba(255,107,26,0.08)" stroke-width="1"/>
+          <line x1="360" y1="555" x2="330" y2="597" stroke="rgba(255,107,26,0.08)" stroke-width="1"/>
+          <line x1="400" y1="555" x2="370" y2="597" stroke="rgba(255,107,26,0.08)" stroke-width="1"/>
+          <line x1="440" y1="555" x2="410" y2="597" stroke="rgba(255,107,26,0.08)" stroke-width="1"/>
+          <line x1="480" y1="555" x2="450" y2="597" stroke="rgba(255,107,26,0.08)" stroke-width="1"/>
+          <line x1="520" y1="555" x2="490" y2="597" stroke="rgba(255,107,26,0.08)" stroke-width="1"/>
+          <line x1="560" y1="555" x2="530" y2="597" stroke="rgba(255,107,26,0.08)" stroke-width="1"/>
+          <line x1="600" y1="555" x2="570" y2="597" stroke="rgba(255,107,26,0.08)" stroke-width="1"/>
+          <line x1="640" y1="555" x2="610" y2="597" stroke="rgba(255,107,26,0.08)" stroke-width="1"/>
+          <line x1="680" y1="555" x2="650" y2="597" stroke="rgba(255,107,26,0.08)" stroke-width="1"/>
+          <line x1="720" y1="555" x2="690" y2="597" stroke="rgba(255,107,26,0.08)" stroke-width="1"/>
+          <line x1="760" y1="555" x2="730" y2="597" stroke="rgba(255,107,26,0.08)" stroke-width="1"/>
+          <line x1="800" y1="555" x2="770" y2="597" stroke="rgba(255,107,26,0.08)" stroke-width="1"/>
+          <text class="zone-label" x="480" y="574" text-anchor="middle" fill="rgba(255,107,26,0.9)" font-family="Share Tech Mono,monospace" font-size="10" letter-spacing="0.22em">FOUNDATION · CEMENT · BRICKS · TMT STEEL</text>
+          <g class="hotspot" filter="url(#orange-glow)">
+            <circle cx="480" cy="571" r="4" fill="#ff6b1a" opacity="0.9"/>
+            <circle cx="480" cy="571" r="11" fill="none" stroke="#ff6b1a" stroke-width="0.8" opacity="0.45"/>
+          </g>
+        </g>
+
+        <!-- ─── OUTER WALLS ─── -->
+        <rect x="160" y="278" width="28"  height="277" fill="rgba(240,237,230,0.04)" stroke="rgba(240,237,230,0.22)" stroke-width="1"/>
+        <rect x="772" y="278" width="28"  height="277" fill="rgba(240,237,230,0.04)" stroke="rgba(240,237,230,0.22)" stroke-width="1"/>
+        <rect x="160" y="278" width="640" height="4"   fill="rgba(240,237,230,0.06)" stroke="rgba(240,237,230,0.22)" stroke-width="0.5"/>
+        <!-- Floor line -->
+        <line x1="160" y1="555" x2="800" y2="555" stroke="rgba(240,237,230,0.22)" stroke-width="1"/>
+
+        <!-- Interior partition lines -->
+        <line x1="430" y1="278" x2="430" y2="555" stroke="rgba(240,237,230,0.12)" stroke-width="1" stroke-dasharray="6 5"/>
+        <line x1="610" y1="278" x2="610" y2="555" stroke="rgba(240,237,230,0.12)" stroke-width="1" stroke-dasharray="6 5"/>
+
+        <!-- ─── WALL / FINISHING ZONE ─── -->
+        <g class="zone" onclick="openZone('walls')">
+          <rect class="zone-fill" x="158" y="276" width="644" height="280" fill="url(#rg-walls)"/>
+          <!-- Room outlines -->
+          <rect x="188" y="290" width="232" height="258" fill="rgba(200,150,10,0.03)" stroke="rgba(240,237,230,0.1)" stroke-width="0.5"/>
+          <rect x="438" y="290" width="163" height="258" fill="rgba(200,150,10,0.03)" stroke="rgba(240,237,230,0.1)" stroke-width="0.5"/>
+          <rect x="619" y="290" width="143" height="258" fill="rgba(200,150,10,0.03)" stroke="rgba(240,237,230,0.1)" stroke-width="0.5"/>
+          <!-- Room labels -->
+          <text fill="rgba(240,237,230,0.2)" font-family="Share Tech Mono,monospace" font-size="9" x="304" y="308" text-anchor="middle" letter-spacing="0.2em">LIVING ROOM</text>
+          <text fill="rgba(240,237,230,0.2)" font-family="Share Tech Mono,monospace" font-size="9" x="519" y="308" text-anchor="middle" letter-spacing="0.2em">BED ROOM</text>
+          <text fill="rgba(240,237,230,0.2)" font-family="Share Tech Mono,monospace" font-size="9" x="690" y="308" text-anchor="middle" letter-spacing="0.2em">KITCHEN</text>
+          <!-- Tile grid on floor (decorative) -->
+          <line x1="188" y1="515" x2="420" y2="515" stroke="rgba(200,150,10,0.12)" stroke-width="0.5" stroke-dasharray="40 40"/>
+          <line x1="188" y1="490" x2="420" y2="490" stroke="rgba(200,150,10,0.08)" stroke-width="0.5" stroke-dasharray="40 40"/>
+          <text class="zone-label" x="304" y="440" text-anchor="middle" fill="rgba(200,150,10,0.9)" font-family="Share Tech Mono,monospace" font-size="10" letter-spacing="0.18em">TILES · PAINT · PUTTY · PLYWOOD</text>
+          <g class="hotspot" filter="url(#soft-glow)">
+            <circle cx="304" cy="415" r="4"  fill="#c8960a" opacity="0.9"/>
+            <circle cx="304" cy="415" r="11" fill="none" stroke="#c8960a" stroke-width="0.8" opacity="0.4"/>
+          </g>
+        </g>
+
+        <!-- ─── BATHROOM ZONE ─── -->
+        <g class="zone" onclick="openZone('bathroom')">
+          <rect class="zone-fill" x="608" y="400" width="164" height="156" fill="url(#rg-bath)"/>
+          <!-- Toilet plan view -->
+          <rect x="626" y="476" width="44"  height="26" rx="4"  fill="rgba(20,180,255,0.08)"  stroke="rgba(20,180,255,0.45)" stroke-width="0.8"/>
+          <rect x="626" y="466" width="44"  height="12" rx="3"  fill="rgba(20,180,255,0.05)"  stroke="rgba(20,180,255,0.35)" stroke-width="0.8"/>
+          <!-- Shower -->
+          <rect x="626" y="410" width="56"  height="48" fill="rgba(20,180,255,0.05)"  stroke="rgba(20,180,255,0.35)" stroke-width="0.8"/>
+          <circle cx="654" cy="422" r="10"  fill="none" stroke="rgba(20,180,255,0.35)" stroke-width="0.8"/>
+          <!-- Shower lines -->
+          <line x1="646" y1="418" x2="662" y2="418" stroke="rgba(20,180,255,0.2)" stroke-width="0.5"/>
+          <line x1="646" y1="422" x2="662" y2="422" stroke="rgba(20,180,255,0.2)" stroke-width="0.5"/>
+          <line x1="646" y1="426" x2="662" y2="426" stroke="rgba(20,180,255,0.2)" stroke-width="0.5"/>
+          <!-- Wash basin -->
+          <ellipse cx="736" cy="478" rx="20" ry="14" fill="rgba(20,180,255,0.08)"  stroke="rgba(20,180,255,0.45)" stroke-width="0.8"/>
+          <circle  cx="736" cy="478" r="5"   fill="none" stroke="rgba(20,180,255,0.3)" stroke-width="0.8"/>
+          <!-- Tap -->
+          <line x1="736" y1="464" x2="736" y2="460" stroke="rgba(20,180,255,0.45)" stroke-width="1.5"/>
+          <text class="zone-label" x="690" y="528" text-anchor="middle" fill="rgba(20,180,255,0.9)"  font-family="Share Tech Mono,monospace" font-size="10" letter-spacing="0.14em">BATHROOM</text>
+          <text class="zone-label" x="690" y="543" text-anchor="middle" fill="rgba(20,180,255,0.65)" font-family="Share Tech Mono,monospace" font-size="8"  letter-spacing="0.1em">PIPES · FITTINGS · SANITARYWARE</text>
+          <g class="hotspot" filter="url(#soft-glow)">
+            <circle cx="690" cy="403" r="4"  fill="#14b4ff" opacity="0.9"/>
+            <circle cx="690" cy="403" r="11" fill="none" stroke="#14b4ff" stroke-width="0.8" opacity="0.4"/>
+          </g>
+        </g>
+
+        <!-- ─── ELECTRICAL ZONE ─── -->
+        <g class="zone" onclick="openZone('electrical')">
+          <rect class="zone-fill" x="158" y="400" width="264" height="156" fill="url(#rg-elec)"/>
+          <!-- Distribution board -->
+          <rect x="172" y="414" width="52"  height="72" fill="rgba(255,220,0,0.06)"  stroke="rgba(255,220,0,0.45)" stroke-width="0.8"/>
+          <!-- MCB slots -->
+          <rect x="178" y="422" width="40"  height="8"  rx="1" fill="rgba(255,220,0,0.1)"  stroke="rgba(255,220,0,0.3)" stroke-width="0.5"/>
+          <rect x="178" y="434" width="40"  height="8"  rx="1" fill="rgba(255,220,0,0.1)"  stroke="rgba(255,220,0,0.3)" stroke-width="0.5"/>
+          <rect x="178" y="446" width="40"  height="8"  rx="1" fill="rgba(255,220,0,0.1)"  stroke="rgba(255,220,0,0.3)" stroke-width="0.5"/>
+          <text fill="rgba(255,220,0,0.55)" font-family="Share Tech Mono,monospace" font-size="7" x="198" y="490" text-anchor="middle" letter-spacing="0.12em">DIST. BOARD</text>
+          <!-- Wire runs -->
+          <line x1="224" y1="450" x2="390" y2="450" stroke="rgba(255,220,0,0.35)" stroke-width="0.8" stroke-dasharray="6 4"/>
+          <line x1="224" y1="450" x2="224" y2="510" stroke="rgba(255,220,0,0.35)" stroke-width="0.8" stroke-dasharray="6 4"/>
+          <line x1="304" y1="450" x2="304" y2="510" stroke="rgba(255,220,0,0.25)" stroke-width="0.8" stroke-dasharray="6 4"/>
+          <!-- Switch box -->
+          <rect x="380" y="443" width="22"  height="15" fill="rgba(255,220,0,0.06)"  stroke="rgba(255,220,0,0.4)" stroke-width="0.8"/>
+          <circle cx="391" cy="451" r="4" fill="none" stroke="rgba(255,220,0,0.4)" stroke-width="0.5"/>
+          <!-- Light bulb symbols -->
+          <circle cx="240" cy="515" r="10" fill="none" stroke="rgba(255,220,0,0.4)" stroke-width="0.8"/>
+          <line   x1="240" y1="505" x2="240" y2="500" stroke="rgba(255,220,0,0.4)" stroke-width="0.8"/>
+          <line   x1="235" y1="519" x2="245" y2="519" stroke="rgba(255,220,0,0.3)" stroke-width="0.5"/>
+          <circle cx="320" cy="515" r="10" fill="none" stroke="rgba(255,220,0,0.4)" stroke-width="0.8"/>
+          <line   x1="320" y1="505" x2="320" y2="500" stroke="rgba(255,220,0,0.4)" stroke-width="0.8"/>
+          <line   x1="315" y1="519" x2="325" y2="519" stroke="rgba(255,220,0,0.3)" stroke-width="0.5"/>
+          <text class="zone-label" x="264" y="532" text-anchor="middle" fill="rgba(255,220,0,0.9)"  font-family="Share Tech Mono,monospace" font-size="10" letter-spacing="0.18em">ELECTRICAL ZONE</text>
+          <text class="zone-label" x="264" y="547" text-anchor="middle" fill="rgba(255,220,0,0.65)" font-family="Share Tech Mono,monospace" font-size="8"  letter-spacing="0.1em">WIRE · MCB · LED · SWITCHES</text>
+          <g class="hotspot" filter="url(#soft-glow)">
+            <circle cx="264" cy="403" r="4"  fill="#ffdc00" opacity="0.9"/>
+            <circle cx="264" cy="403" r="11" fill="none" stroke="#ffdc00" stroke-width="0.8" opacity="0.4"/>
+          </g>
+        </g>
+
+        <!-- ─── ROOF ZONE ─── -->
+        <g class="zone" onclick="openZone('roof')">
+          <polygon class="zone-fill" points="96,278 480,105 864,278" fill="url(#rg-roof)"/>
+          <!-- Roof ridge and rafters -->
+          <line x1="480" y1="112" x2="480" y2="278" stroke="rgba(255,107,26,0.3)" stroke-width="0.8" stroke-dasharray="6 5"/>
+          <!-- Rafter lines left -->
+          <line x1="210" y1="232" x2="360" y2="172" stroke="rgba(255,107,26,0.14)" stroke-width="1.5"/>
+          <line x1="234" y1="244" x2="384" y2="184" stroke="rgba(255,107,26,0.14)" stroke-width="1.5"/>
+          <line x1="258" y1="256" x2="408" y2="196" stroke="rgba(255,107,26,0.14)" stroke-width="1.5"/>
+          <line x1="282" y1="267" x2="432" y2="207" stroke="rgba(255,107,26,0.14)" stroke-width="1.5"/>
+          <!-- Rafter lines right -->
+          <line x1="528" y1="207" x2="678" y2="267" stroke="rgba(255,107,26,0.14)" stroke-width="1.5"/>
+          <line x1="552" y1="196" x2="702" y2="256" stroke="rgba(255,107,26,0.14)" stroke-width="1.5"/>
+          <line x1="576" y1="184" x2="726" y2="244" stroke="rgba(255,107,26,0.14)" stroke-width="1.5"/>
+          <line x1="600" y1="172" x2="750" y2="232" stroke="rgba(255,107,26,0.14)" stroke-width="1.5"/>
+          <!-- Roof outline (bright) -->
+          <polygon points="96,278 480,105 864,278" fill="none" stroke="rgba(255,107,26,0.55)" stroke-width="1.5"/>
+          <!-- Ridge cap indicator -->
+          <line x1="420" y1="145" x2="540" y2="145" stroke="rgba(255,107,26,0.35)" stroke-width="1" stroke-dasharray="4 3"/>
+          <!-- Hotspot and label -->
+          <text class="zone-label" x="480" y="166" text-anchor="middle" fill="rgba(255,107,26,0.9)" font-family="Share Tech Mono,monospace" font-size="10" letter-spacing="0.22em">GI SHEETS · PVC ROOFING</text>
+          <g class="hotspot" filter="url(#orange-glow)">
+            <circle cx="480" cy="192" r="4"  fill="#ff6b1a" opacity="0.9"/>
+            <circle cx="480" cy="192" r="11" fill="none" stroke="#ff6b1a" stroke-width="0.8" opacity="0.45"/>
+          </g>
+        </g>
+
+        <!-- ─── DOOR ─── -->
+        <rect x="366" y="445" width="66"  height="110" fill="rgba(240,237,230,0.04)"  stroke="rgba(240,237,230,0.3)" stroke-width="1"/>
+        <!-- Door swing arc -->
+        <path d="M366 445 Q399 490 432 445" fill="none" stroke="rgba(240,237,230,0.15)" stroke-width="0.8" stroke-dasharray="4 3"/>
+        <!-- Door panels -->
+        <rect x="372" y="451" width="24"  height="46" fill="rgba(240,237,230,0.03)"  stroke="rgba(240,237,230,0.12)" stroke-width="0.5"/>
+        <rect x="402" y="451" width="24"  height="46" fill="rgba(240,237,230,0.03)"  stroke="rgba(240,237,230,0.12)" stroke-width="0.5"/>
+        <!-- Door knob zone (hardware) -->
+        <g class="zone" onclick="openZone('hardware')" style="cursor:pointer">
+          <circle cx="428" cy="502" r="5"   fill="rgba(255,107,26,0.5)" stroke="rgba(255,107,26,0.8)" stroke-width="0.8"/>
+          <circle cx="428" cy="502" r="12"  fill="none" stroke="rgba(255,107,26,0.3)" stroke-width="0.8"/>
+        </g>
+        <text fill="rgba(240,237,230,0.2)" font-family="Share Tech Mono,monospace" font-size="8" x="399" y="522" text-anchor="middle" letter-spacing="0.12em">MAIN DOOR</text>
+
+        <!-- ─── WINDOWS ─── -->
+        <!-- Living room -->
+        <rect x="208" y="330" width="90" height="66" fill="rgba(240,237,230,0.04)" stroke="rgba(240,237,230,0.25)" stroke-width="1"/>
+        <line x1="253" y1="330" x2="253" y2="396" stroke="rgba(240,237,230,0.18)" stroke-width="0.5"/>
+        <line x1="208" y1="363" x2="298" y2="363" stroke="rgba(240,237,230,0.18)" stroke-width="0.5"/>
+        <!-- Window sill lines -->
+        <line x1="205" y1="396" x2="301" y2="396" stroke="rgba(240,237,230,0.2)" stroke-width="2"/>
+        <!-- Bedroom window -->
+        <rect x="455" y="330" width="90" height="66" fill="rgba(240,237,230,0.04)" stroke="rgba(240,237,230,0.25)" stroke-width="1"/>
+        <line x1="500" y1="330" x2="500" y2="396" stroke="rgba(240,237,230,0.18)" stroke-width="0.5"/>
+        <line x1="455" y1="363" x2="545" y2="363" stroke="rgba(240,237,230,0.18)" stroke-width="0.5"/>
+        <line x1="452" y1="396" x2="548" y2="396" stroke="rgba(240,237,230,0.2)" stroke-width="2"/>
+
+        <!-- ─── ANNOTATIONS ─── -->
+        <!-- Roof pitch angle -->
+        <path d="M480,278 L480,252 A28,28 0 0,1 455,264 Z" fill="rgba(255,107,26,0.1)" stroke="rgba(255,107,26,0.3)" stroke-width="0.5"/>
+        <text fill="rgba(255,107,26,0.45)" font-family="Share Tech Mono,monospace" font-size="9" x="464" y="262" letter-spacing="0.05em">34°</text>
+        <!-- Wall thickness indicator -->
+        <line x1="162" y1="390" x2="188" y2="390" stroke="rgba(240,237,230,0.2)" stroke-width="0.5" stroke-dasharray="3 2"/>
+        <text fill="rgba(240,237,230,0.2)" font-family="Share Tech Mono,monospace" font-size="7" x="175" y="387" text-anchor="middle">228mm</text>
+
+        <!-- ─── DRAWING INFO BLOCK ─── -->
+        <rect x="12" y="595" width="148" height="38" fill="none" stroke="rgba(255,107,26,0.2)" stroke-width="0.5"/>
+        <line x1="12" y1="606" x2="160" y2="606" stroke="rgba(255,107,26,0.12)" stroke-width="0.5"/>
+        <text fill="rgba(255,107,26,0.45)" font-family="Share Tech Mono,monospace" font-size="8" x="16" y="603" letter-spacing="0.12em">DWG: LS-PLAN-001-B</text>
+        <text fill="rgba(240,237,230,0.3)"  font-family="Share Tech Mono,monospace" font-size="7" x="16" y="618" letter-spacing="0.08em">LOVELY STORE · KALLARA · 2025</text>
+        <text fill="rgba(240,237,230,0.2)"  font-family="Share Tech Mono,monospace" font-size="7" x="16" y="629" letter-spacing="0.08em">REV B · SCALE 1:100</text>
+
+        <!-- ─── NORTH ARROW ─── -->
+        <g transform="translate(908,52)">
+          <circle r="20" fill="none" stroke="rgba(255,107,26,0.3)" stroke-width="0.8"/>
+          <path d="M0,-16 L5,8 L0,5 L-5,8 Z" fill="rgba(255,107,26,0.7)"/>
+          <text fill="rgba(255,107,26,0.5)" font-family="Share Tech Mono,monospace" font-size="9" x="0" y="-20" text-anchor="middle" letter-spacing="0.1em">N</text>
+        </g>
+
+        <!-- ─── SCALE BAR ─── -->
+        <g transform="translate(800,620)">
+          <line x1="0" y1="0" x2="88" y2="0" stroke="rgba(255,107,26,0.4)" stroke-width="1"/>
+          <line x1="0"  y1="-5" x2="0"  y2="5" stroke="rgba(255,107,26,0.4)" stroke-width="0.8"/>
+          <line x1="44" y1="-5" x2="44" y2="5" stroke="rgba(255,107,26,0.4)" stroke-width="0.8"/>
+          <line x1="88" y1="-5" x2="88" y2="5" stroke="rgba(255,107,26,0.4)" stroke-width="0.8"/>
+          <text fill="rgba(255,107,26,0.45)" font-family="Share Tech Mono,monospace" font-size="8" x="0"  y="-8" text-anchor="middle">0</text>
+          <text fill="rgba(255,107,26,0.45)" font-family="Share Tech Mono,monospace" font-size="8" x="44" y="-8" text-anchor="middle">3m</text>
+          <text fill="rgba(255,107,26,0.45)" font-family="Share Tech Mono,monospace" font-size="8" x="88" y="-8" text-anchor="middle">6m</text>
+        </g>
+      </svg>
+
+      <!-- Zone badges -->
+      <div class="zone-badges">
+        <button class="zone-badge" onclick="openZone('roof')">▲ Roofing</button>
+        <button class="zone-badge" onclick="openZone('walls')">■ Walls &amp; Finish</button>
+        <button class="zone-badge" onclick="openZone('bathroom')">◈ Bathroom</button>
+        <button class="zone-badge" onclick="openZone('electrical')">⚡ Electrical</button>
+        <button class="zone-badge" onclick="openZone('foundation')">▬ Foundation</button>
+        <button class="zone-badge" onclick="openZone('hardware')">⬡ Hardware &amp; Tools</button>
+        <button class="zone-badge" onclick="openZone('plumbing')">◎ Plumbing</button>
+        <button class="zone-badge" onclick="openZone('safety')">◉ Safety &amp; Misc</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STATS BAR ══ -->
+<div class="stats-bar">
+  <div class="stat-item reveal">
+    <div class="stat-number" data-target="30"><sup>+</sup></div>
+    <div class="stat-label">Years of Service</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-1">
+    <div class="stat-number" data-target="500"><sup>+</sup></div>
+    <div class="stat-label">Products in Stock</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-2">
+    <div class="stat-number" data-target="8"><sup>+</sup></div>
+    <div class="stat-label">Product Categories</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-3">
+    <div class="stat-number" data-target="1990"></div>
+    <div class="stat-label">Year Established</div>
+  </div>
+</div>
+
+<!-- ══ CATALOGUE ══ -->
+<section id="catalogue">
+  <div class="cat-header reveal">
+    <div>
+      <div class="section-eyebrow">Product Catalogue</div>
+      <h2 class="section-title-xl">ALL<br><span class="dim">CATEGORIES</span></h2>
+    </div>
+    <div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:0.2em;text-transform:uppercase;text-align:right;line-height:2;">
+      200+ SKUs<br>Always in stock<br>Pickup available
+    </div>
+  </div>
+
+  <div class="cat-grid reveal">
+    <div class="cat-card" onclick="openZone('foundation')">
+      <div class="cat-card-top">
+        <div class="cat-num">01</div>
+        <div class="cat-icon-glyph">▬</div>
+      </div>
+      <div class="cat-card-bottom">
+        <div class="cat-name">Structural</div>
+        <div class="cat-desc">Cement · Sand · Bricks<br>Steel · Blocks · Timber</div>
+        <div class="cat-arrow">EXPLORE →</div>
+      </div>
+    </div>
+    <div class="cat-card" onclick="openZone('plumbing')">
+      <div class="cat-card-top">
+        <div class="cat-num">02</div>
+        <div class="cat-icon-glyph">◎</div>
+      </div>
+      <div class="cat-card-bottom">
+        <div class="cat-name">Plumbing</div>
+        <div class="cat-desc">PVC · CPVC · GI Pipes<br>Valves · Fittings · Tanks</div>
+        <div class="cat-arrow">EXPLORE →</div>
+      </div>
+    </div>
+    <div class="cat-card" onclick="openZone('electrical')">
+      <div class="cat-card-top">
+        <div class="cat-num">03</div>
+        <div class="cat-icon-glyph">⚡</div>
+      </div>
+      <div class="cat-card-bottom">
+        <div class="cat-name">Electrical</div>
+        <div class="cat-desc">Wire · MCB · LED Bulbs<br>Switches · Conduit · DB</div>
+        <div class="cat-arrow">EXPLORE →</div>
+      </div>
+    </div>
+    <div class="cat-card" onclick="openZone('bathroom')">
+      <div class="cat-card-top">
+        <div class="cat-num">04</div>
+        <div class="cat-icon-glyph">◈</div>
+      </div>
+      <div class="cat-card-bottom">
+        <div class="cat-name">Sanitaryware</div>
+        <div class="cat-desc">Closets · Basins<br>Showers · Faucets · Mirrors</div>
+        <div class="cat-arrow">EXPLORE →</div>
+      </div>
+    </div>
+    <div class="cat-card" onclick="openZone('walls')">
+      <div class="cat-card-top">
+        <div class="cat-num">05</div>
+        <div class="cat-icon-glyph">▨</div>
+      </div>
+      <div class="cat-card-bottom">
+        <div class="cat-name">Finishing</div>
+        <div class="cat-desc">Tiles · Paint · Putty<br>Plywood · MDF · Polish</div>
+        <div class="cat-arrow">EXPLORE →</div>
+      </div>
+    </div>
+    <div class="cat-card" onclick="openZone('hardware')">
+      <div class="cat-card-top">
+        <div class="cat-num">06</div>
+        <div class="cat-icon-glyph">⬡</div>
+      </div>
+      <div class="cat-card-bottom">
+        <div class="cat-name">Hardware</div>
+        <div class="cat-desc">Nails · Screws · Bolts<br>Drill · Wrench · Hammer</div>
+        <div class="cat-arrow">EXPLORE →</div>
+      </div>
+    </div>
+    <div class="cat-card" onclick="openZone('roof')">
+      <div class="cat-card-top">
+        <div class="cat-num">07</div>
+        <div class="cat-icon-glyph">▲</div>
+      </div>
+      <div class="cat-card-bottom">
+        <div class="cat-name">Roofing</div>
+        <div class="cat-desc">GI Sheets · PVC Sheets<br>Ridge Cap · Accessories</div>
+        <div class="cat-arrow">EXPLORE →</div>
+      </div>
+    </div>
+    <div class="cat-card" onclick="openZone('safety')">
+      <div class="cat-card-top">
+        <div class="cat-num">08</div>
+        <div class="cat-icon-glyph">◉</div>
+      </div>
+      <div class="cat-card-bottom">
+        <div class="cat-name">Safety &amp; Misc</div>
+        <div class="cat-desc">Helmets · Gloves · Ropes<br>Ladders · Buckets · PPE</div>
+        <div class="cat-arrow">EXPLORE →</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <div class="section-eyebrow reveal">About the Store</div>
+      <h2 class="section-title-xl reveal">LOVELY<br><span class="dim">STORE</span></h2>
+      <p class="about-body reveal">
+        Serving Kallara, Karette and the wider Thiruvananthapuram district since 1990. 
+        A single destination for everything construction — from foundation steel to finishing paint.
+        Trusted by contractors, architects, and homebuilders across the region.
+      </p>
+    </div>
+    <div class="reveal">
+      <div class="about-address-block">
+        <div class="address-row">
+          <span class="addr-key">Location</span>
+          <span class="addr-val">Kallara, Karette</span>
+        </div>
+        <div class="address-row">
+          <span class="addr-key">District</span>
+          <span class="addr-val">Thiruvananthapuram, Kerala</span>
+        </div>
+        <div class="address-row">
+          <span class="addr-key">Hours Mon–Sat</span>
+          <span class="addr-val">9:00 AM – 7:00 PM</span>
+        </div>
+        <div class="address-row">
+          <span class="addr-key">Hours Sunday</span>
+          <span class="addr-val">9:00 AM – 2:00 PM</span>
+        </div>
+        <div class="address-row">
+          <span class="addr-key">Latitude</span>
+          <span class="addr-val">8.7502° N</span>
+        </div>
+        <div class="address-row">
+          <span class="addr-key">Longitude</span>
+          <span class="addr-val">76.9369° E</span>
+        </div>
+        <div class="address-row" style="border-bottom:none;padding-top:16px;">
+          <a href="https://maps.app.goo.gl/Srmn2eejVCX1qe7n7" target="_blank" class="btn-primary" style="padding:12px 24px;font-size:12px;">
+            Open in Maps ↗
+          </a>
+          <a href="tel:" class="btn-ghost" style="padding:11px 24px;font-size:12px;">
+            Call Store
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-logo">LOVELY STORE</div>
+  <div class="footer-copy">© 2025 Lovely Store · Kallara, Karette · Thiruvananthapuram</div>
+  <div class="footer-rev">DWG REV B</div>
+</footer>
+
+<!-- ══ PRODUCT DRAWER ══ -->
+<div id="product-drawer">
+  <div class="drawer-header">
+    <div>
+      <div class="drawer-zone-name" id="drawer-zone-name">ZONE <span>NAME</span></div>
+      <div class="drawer-count" id="drawer-count">0 PRODUCTS</div>
+    </div>
+    <div class="drawer-meta">
+      <button class="drawer-close" onclick="closeDrawer()">CLOSE ✕</button>
+    </div>
+  </div>
+  <div class="drawer-products" id="drawer-products"></div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
