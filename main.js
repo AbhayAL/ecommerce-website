@@ -136,9 +136,12 @@ const ZONE_DATA = {
 /* ══════════════════════════════
    PARTICLE SYSTEM
 ══════════════════════════════ */
+const IS_TOUCH = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
 function initParticles() {
   const canvas = document.getElementById('particle-canvas');
   if (!canvas) return;
+  if (IS_TOUCH) { canvas.style.display = 'none'; return; }
   const ctx = canvas.getContext('2d');
 
   function resize() {
@@ -203,6 +206,7 @@ function initCursor() {
   const cursor = document.getElementById('cursor');
   const coord  = document.getElementById('coord-display');
   if (!cursor) return;
+  if (IS_TOUCH) { cursor.style.display = 'none'; return; }
 
   let mx = 0, my = 0, cx = 0, cy = 0;
 
